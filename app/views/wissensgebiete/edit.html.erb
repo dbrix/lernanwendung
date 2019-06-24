@@ -1,0 +1,35 @@
+<h1>Wissensgebiet bearbeiten</h1>
+
+<%= form_for @wissensgebiet, url: {action:"update"}, local: true do |form| %>
+
+  <% if @wissensgebiet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@wissensgebiet.errors.count, "error") %> Das Wissensgebiet konnte nicht
+        erstellt werden!
+      </h2>
+      <ul>
+        <% @wissensgebiet.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :titel %><br>
+    <%= form.text_field :titel %>
+  </p>
+
+  <p>
+    <%= form.label :beschreibung %><br>
+    <%= form.text_area :beschreibung %>
+  </p>
+
+  <p>
+    <%= form.submit "Wissensgebiet bearbeiten"%>
+  </p>
+
+<% end %>
+
+<%= link_to 'Zurück', wissensgebiete_index_path %>

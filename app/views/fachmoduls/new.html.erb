@@ -1,0 +1,39 @@
+<h1>Neues Fachmodul erstellen</h1>
+<%= form_for @fachmodul, url: {action:"create"}, local: true do |form| %>
+
+  <% if @fachmodul.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@fachmodul.errors.count, "error") %> Das Fachmodul konnte nicht
+        erstellt werden!
+      </h2>
+      <ul>
+        <% @fachmodul.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :titel %><br>
+    <%= form.text_field :titel %>
+  </p>
+
+  <p>
+    <%= form.label :beschreibung %><br>
+    <%= form.text_area :beschreibung %>
+  </p>
+
+  <p>
+    <%= form.label "Ansprechpartner*in für dieses Fachmodul" %>
+    <br>
+<%= form.collection_select(:benutzer_id, Benutzer.all.where(ansprechpartner: true), :id, :name, { :prompt => 'Wähle Ansprechpartner*in',:selected => @fachmodul.benutzer_id }) %>
+
+  </p>
+  <p>
+    <%= form.submit "Fachmodul erstellen" %>
+  </p>
+
+<% end %>
+<%= link_to 'Zurück', wissensgebiete_path(@wissensgebiet) %>

@@ -1,0 +1,21 @@
+<!--is index page from fachmoduls-->
+<h1>Fachmodulübersicht</h1>
+<%= link_to 'Neues Fachmodul erstellen', new_wissensgebiete_fachmodul_path(@wissensgebiet) %>
+
+<table>
+
+
+  <% @fachmoduls.each do |fachmodul| %>
+    <tr>
+      <td><%= fachmodul.id %></td>
+      <td><%= fachmodul.titel %></td>
+      <td><%= fachmodul.beschreibung %></td>
+      <td><%= fachmodul.benutzer.name %></td>
+      <td><%= link_to 'Fachmodul bearbeiten', edit_wissensgebiete_fachmodul_path(@wissensgebiet) %></td>
+    
+
+
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Zurück', wissensgebiete_index_path %>

@@ -1,0 +1,19 @@
+<h1>Wissensgebietsübersicht</h1>
+<%= link_to 'Neues Wissensgebiet erstellen', new_wissensgebiete_path %>
+<table>
+
+
+  <% @wissensgebiete.each do |wissensgebiet| %>
+    <tr>
+      <td><%= wissensgebiet.id %></td>
+      <td><%= wissensgebiet.titel %></td>
+      <td><%= wissensgebiet.beschreibung %></td>
+      <td><%= link_to 'Wissensgebiet bearbeiten', edit_wissensgebiete_path(wissensgebiet) %></td>
+      <td><%= link_to 'Wissensgebiet löschen', wissensgebiete_path(wissensgebiet),
+              method: :delete,
+              data: { confirm: 'Sind Sie sicher, dass Sie dieses Wissensgebiet löschen möchten?' } %></td>
+      <td><%= link_to 'Fachmodulübersicht des Wissensgebietes', wissensgebiete_path(wissensgebiet) %></td>
+<!--that link in heading-->
+    </tr>
+  <% end %>
+</table>

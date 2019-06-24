@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  e-mail-adresse: 
+  name: MyString
+  passwort: MyString
+  tutor: false
+  qualTut: false
+  ansprechpartner: false
+  admin: false
+
+two:
+  e-mail-adresse: 
+  name: MyString
+  passwort: MyString
+  tutor: false
+  qualTut: false
+  ansprechpartner: false
+  admin: false

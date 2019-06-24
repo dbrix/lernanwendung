@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titel: MyString
+  inhalt: MyText
+  gemeldet: false
+  fachmodul: one
+
+two:
+  titel: MyString
+  inhalt: MyText
+  gemeldet: false
+  fachmodul: two
