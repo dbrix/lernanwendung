@@ -1,8 +1,12 @@
 class FachmodulsController < ApplicationController
-# edit fehler - weiterleitung, update und delete fehlt
   def new
     @wissensgebiet =Wissensgebiet.find(params[:wissensgebiete_id])
     @fachmodul =Fachmodul.new
+  end
+
+  def show
+    @wissensgebiet=Wissensgebiet.find(params[:wissensgebiete_id])
+    @fachmodul =@wissensgebiet.fachmoduls.find(params[:id])
   end
 
   def edit
@@ -22,10 +26,9 @@ class FachmodulsController < ApplicationController
       end
   end
 
-=begin
   def update
     @wissensgebiet =Wissensgebiet.find(params[:wissensgebiete_id])
-    @fachmodul = @wissensgebiet.fachmoduls.find(params[:fachmodul_id])
+    @fachmodul = @wissensgebiet.fachmoduls.find(params[:id])
     if @fachmodul.update(fachmodul_params)
       flash[:success] = "Fachmodul erfolgreich bearbeitet"
       redirect_to wissensgebiete_path(@wissensgebiet)
@@ -33,8 +36,15 @@ class FachmodulsController < ApplicationController
       render 'edit'
     end
   end
-=end
 
+def destroy
+  @wissensgebiet = Wissensgebiet.find(params[:wissensgebiete_id])
+  @fachmodul=@wissensgebiet.fachmoduls.find(params[:id])
+  if @fachmodul.destroy
+    flash[:success] = "Fachmodul erfolgreich gelöscht"
+  end
+  redirect_to wissensgebiete_path(@wissensgebiet)
+end
 
 
   private

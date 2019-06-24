@@ -42,8 +42,9 @@ class WissensgebieteController < ApplicationController
 
   def destroy
     @wissensgebiet = Wissensgebiet.find(params[:id])
-    @wissensgebiet.destroy
-
+    if @wissensgebiet.destroy
+      flash[:success]="Wissensgebiet erfolgreich gelöscht"
+    end
     redirect_to wissensgebiete_index_path
   end
 

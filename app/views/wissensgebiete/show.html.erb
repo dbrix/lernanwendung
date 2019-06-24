@@ -11,8 +11,12 @@
       <td><%= fachmodul.titel %></td>
       <td><%= fachmodul.beschreibung %></td>
       <td><%= fachmodul.benutzer.name %></td>
-      <td><%= link_to 'Fachmodul bearbeiten', edit_wissensgebiete_fachmodul_path(@wissensgebiet) %></td>
-    
+      <td><%= link_to 'Fachmodul bearbeiten', edit_wissensgebiete_fachmodul_path(@wissensgebiet,fachmodul) %></td>
+      <td><%= link_to 'Fachmodul löschen', wissensgebiete_fachmodul_path(@wissensgebiet,fachmodul),
+              method: :delete,
+              data: { confirm: 'Sind Sie sicher, dass Sie dieses Fachmodul löschen möchten?' } %></td>
+      <td><%= link_to 'Lernmethodenübersicht', wissensgebiete_fachmodul_path(@wissensgebiet,fachmodul) %></td>
+
 
 
     </tr>
