@@ -1,11 +1,11 @@
-<h1>Fachmodul bearbeiten</h1>
-<%= form_for @fachmodul, url: {action:"update"}, local: true do |form| %>
+<h1>Neues Fachmodul erstellen</h1>
+<%= form_for @fachmodul, url: {action:"create"}, local: true do |form| %>
 
   <% if @fachmodul.errors.any? %>
     <div id="error_explanation">
       <h2>
         <%= pluralize(@fachmodul.errors.count, "error") %> Das Fachmodul konnte nicht
-        bearbeitet werden!
+        erstellt werden!
       </h2>
       <ul>
         <% @fachmodul.errors.full_messages.each do |msg| %>
@@ -32,7 +32,7 @@
 
   </p>
   <p>
-    <%= form.submit "Fachmodul bearbeiten" %>
+    <%= form.submit "Fachmodul erstellen" %>
   </p>
 
 <% end %>

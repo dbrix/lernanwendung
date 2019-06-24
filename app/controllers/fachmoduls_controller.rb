@@ -4,9 +4,10 @@ class FachmodulsController < ApplicationController
     @fachmodul =Fachmodul.new
   end
 
-  def show
+  def show # is index for "Lernmethoden"
     @wissensgebiet=Wissensgebiet.find(params[:wissensgebiete_id])
     @fachmodul =@wissensgebiet.fachmoduls.find(params[:id])
+    @lernmethoden= Lernmethoden.all
   end
 
   def edit

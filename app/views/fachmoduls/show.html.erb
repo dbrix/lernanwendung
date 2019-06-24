@@ -1,1 +1,15 @@
-<h1>test</h1>
+<table>
+
+
+  <% @lernmethoden.each do |lernmethode| %>
+    <tr>
+      <td><%= lernmethode.id%><td>
+      <td> <%= link_to lernmethode.name,
+        wissensgebiete_fachmodul_lernmethoden_path(@wissensgebiet,@fachmodul, lernmethode) %></td>
+<!--TODO if fachmodul is informatik then display codelab, not anwendungsfälle-->
+
+
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Zurück', wissensgebiete_path(@wissensgebiet) %>

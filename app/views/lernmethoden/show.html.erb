@@ -1,0 +1,19 @@
+<h1>Inhaltsübersicht</h1>
+<%= link_to 'Neuen Inhalt erstellen', new_wissensgebiete_fachmodul_lernmethoden_inhalt_path(@wissensgebiet,@fachmodul, @lernmethode) %>
+
+<table>
+
+
+  <% @inhalts.each do |inhalt| %>
+    <tr>
+      <td><%= inhalt.id %></td>
+      <td><%= inhalt.titel %></td>
+      <td><%= inhalt.inhalt %></td>
+      <td><%= inhalt.gemeldet %></td>
+
+
+
+    </tr>
+  <% end %>
+</table>
+  <%= link_to 'Zurück', wissensgebiete_fachmodul_path(@wissensgebiet,@fachmodul) %>

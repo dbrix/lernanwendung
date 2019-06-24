@@ -1,0 +1,34 @@
+<h1>Neuen Inhalt erstellen</h1>
+<%= form_for @inhalt, url: {action:"create"}, local: true do |form| %>
+
+  <% if @inhalt.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@inhalt.errors.count, "error") %> Der Inhalt konnte nicht
+        erstellt werden!
+      </h2>
+      <ul>
+        <% @inhalt.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :titel %><br>
+    <%= form.text_field :titel %>
+  </p>
+
+  <p>
+    <%= form.label :inhalt %><br>
+    <%= form.text_area :inhalt %>
+  </p>
+
+
+  <p>
+    <%= form.submit "Inhalt erstellen" %>
+  </p>
+
+<% end %>
+<%= link_to 'Zurück', wissensgebiete_fachmodul_lernmethoden_path(@wissensgebiet,@fachmodul,@lernmethode) %>
