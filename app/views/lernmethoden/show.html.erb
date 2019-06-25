@@ -10,7 +10,11 @@
       <td><%= inhalt.titel %></td>
       <td><%= inhalt.inhalt %></td>
       <td><%= inhalt.gemeldet %></td>
-
+      <td><%= link_to 'Inhalt bearbeiten', edit_wissensgebiete_fachmodul_lernmethoden_inhalt_path(@wissensgebiet,@fachmodul,@lernmethode,inhalt) %></td>
+      <td><%= link_to 'Inhalt löschen',wissensgebiete_fachmodul_lernmethoden_inhalt_path(@wissensgebiet,@fachmodul,@lernmethode,inhalt),
+                    method: :delete,
+                    data: { confirm: 'Sind Sie sicher, dass Sie diesen Inhalt löschen möchten?' } %></td>
+      <td><%= link_to 'Inhalt ansehen', wissensgebiete_fachmodul_lernmethoden_inhalt_path(@wissensgebiet,@fachmodul,@lernmethode,inhalt) %></td>
 
 
     </tr>

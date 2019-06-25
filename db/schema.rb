@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_150805) do
+ActiveRecord::Schema.define(version: 2019_06_24_215015) do
 
   create_table "benutzers", force: :cascade do |t|
     t.string "mail"
@@ -39,16 +39,18 @@ ActiveRecord::Schema.define(version: 2019_06_24_150805) do
     t.string "titel"
     t.text "inhalt"
     t.boolean "gemeldet"
-    t.integer "fachmodul_id"
+    t.integer "lernmethoden_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fachmodul_id"], name: "index_inhalts_on_fachmodul_id"
+    t.index ["lernmethoden_id"], name: "index_inhalts_on_lernmethoden_id"
   end
 
   create_table "lernmethodens", force: :cascade do |t|
     t.string "name"
+    t.integer "fachmodul_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["fachmodul_id"], name: "index_lernmethodens_on_fachmodul_id"
   end
 
   create_table "wissensgebiets", force: :cascade do |t|

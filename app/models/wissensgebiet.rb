@@ -9,5 +9,5 @@ class Wissensgebiet < ApplicationRecord
       raise "Wissensgebiet kann nicht gelöscht werden, da es Fachmoule enthält" unless fachmoduls.count == 0
       # ... ok, go ahead and destroy
       super
-    end
+  end
 end
