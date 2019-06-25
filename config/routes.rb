@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  get 'benutzer/show'
 
   resources :wissensgebiete do
     resources:fachmoduls do
