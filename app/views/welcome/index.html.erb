@@ -1,1 +1,54 @@
-<%= link_to 'Login', controller: 'wissensgebiete' %>
+<html><%= link_to 'Login', controller: 'wissensgebiete' %>
+  <head>
+    <title> Login</title>
+    <style type="text/css">
+        body {
+          background-color: #DADADA;
+        }
+        body > .grid {
+          height: 100%;
+        }
+        .image {
+          margin-top: -100px;
+        }
+        .column {
+          max-width: 450px;
+        }
+      </style>
+  </head>
+  <body>
+
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+        <div class="ui stacked segment">
+
+          <h2 class="ui red header">
+            <div class="content">
+              Hochschule Coburg Lernanwendung
+            </div>
+          </h2>
+          <form class="ui large form">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="E-Mail-Adresse">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" placeholder="Passwort">
+                </div>
+              </div>
+
+              <div class="ui fluid large red submit button">Login</div>
+              <div class="ui error message"></div>
+            </div>
+        </form>
+        <div class="ui message">
+          <a href="#">Passwort vergessen?</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

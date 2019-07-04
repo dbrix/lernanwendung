@@ -1,7 +1,7 @@
 class WissensgebieteController < ApplicationController
 
   def index
-    @wissensgebiete =Wissensgebiet.all
+    @wissensgebiete =Wissensgebiet.all.order('LOWER(titel)')
   end
 
   def show

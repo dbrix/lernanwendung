@@ -12,8 +12,17 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% flash.each do |name, msg| %>
+    <div class="ui right aligned grid">
+      <div class="row">
+        <div class="column">
+          <div class="ui <%= name %> message">
+            <%= msg %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <% end %>
     <%= yield %>
   </body>
