@@ -1,4 +1,104 @@
-<h1>Ansprechpartner*in</h1>
+<!--is index page from fachmoduls-->
 
-<p>Name: <%=@benutzer.name%></p>
-<p>E-Mail-Adresse: <%=@benutzer.mail%></p>
+<html>
+  <head>
+    <title> <%=@benutzer.name%> </title>
+    <style type="text/css">
+        body {
+          background-color: #DADADA;
+        }
+
+    </style>
+      <script src="/assets/jquery.js" type="text/javascript"></script>
+      <script src="/assets/jquery_ujs.js" type="text/javascript"></script>
+      <script src="/assets/semantic.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+
+        $(document).ready(function(){
+          $('#hamburger').on("click",function(){
+            $('.ui.sidebar')
+            .sidebar('toggle')
+            ;
+          });
+        })
+
+
+
+      </script>
+  </head>
+  <body>
+    <div class="ui black vertical inverted left visible sidebar menu">
+      <%=link_to '/wissensgebiete' do%>
+      <div class="item">
+        Startseite
+        <i class="ui white home icon"></i>
+
+      </div>
+      <%end%>
+      <div class="item">
+        Tutor*in werden
+        <i class="ui white graduation cap icon"></i>
+
+      </div>
+      <%=link_to '/' do%>
+
+        <div class="item">
+          Logout
+          <i class="ui white sign-out icon"></i>
+
+        </div>
+      <%end%>
+
+    </div>
+    <div class="pusher">
+      <div class="ui stackable left aligned grid">
+      <div class="row">
+        <div class="column">
+          <div class="ui red inverted segment">
+
+            <h1 class="ui white header">
+
+              <i class="white bars icon" id="hamburger" ></i>
+
+              <div class="content"> Ansprechpartner*in </div>
+            </h1>
+          </div>
+        </div>
+          </div>
+
+        </div>
+        <br>
+
+        <div class="ui stackable center alligned grid">
+          <div class="ui divided items">
+            <div class="item">
+              <div class="image">
+                <img src="/images/wireframe/image.png">
+              </div>
+              <div class="content">
+                <a class="header"><%=@benutzer.name%></a>
+                <div class="meta">
+                  <span class="cinema">admin</span> <!-- hart codierte rolle-->
+                </div>
+                <div class="description">
+                  <p>E-Mail-Adresse: <%=@benutzer.mail%></p>
+                </div>
+                <div class="extra">
+                  <div class="ui right floated primary button">
+                    Ansprechpartner*in kontaktieren
+                    <i class="right chevron icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+    </div>
+  </body>
+</html>

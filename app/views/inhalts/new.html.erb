@@ -1,33 +1,116 @@
-<h1>Neuen Inhalt erstellen</h1>
-<%= form_for @inhalt, url: {action:"create"}, local: true do |form| %>
+<html>
+  <head>
+    <title> Wissensgebiet erstellen </title>
+    <style type="text/css">
+        body {
+          background-color: #DADADA;
+        }
 
-  <% if @inhalt.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@inhalt.errors.count, "error") %> Der Inhalt konnte nicht
-        erstellt werden!
-      </h2>
-      <ul>
-        <% @inhalt.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    </style>
+      <script src="/assets/jquery.js" type="text/javascript"></script>
+      <script src="/assets/jquery_ujs.js" type="text/javascript"></script>
+      <script src="/assets/semantic.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+
+        $(document).ready(function(){
+          $('#hamburger').on("click",function(){
+            $('.ui.sidebar')
+            .sidebar('toggle')
+            ;
+          });
+        })
+
+
+
+      </script>
+  </head>
+  <body>
+
+    <div class="ui black vertical inverted left visible sidebar menu">
+      <%=link_to '/wissensgebiete' do%>
+      <div class="item">
+        Startseite
+        <i class="ui white home icon"></i>
+
+      </div>
+      <%end%>
+      <div class="item">
+        Tutor*in werden
+        <i class="ui white graduation cap icon"></i>
+
+      </div>
+      <div class="item">
+        Logout
+        <i class="ui white sign-out icon"></i>
+
+      </div>
     </div>
-  <% end %>
+      <div class="pusher">
+        <div class="ui stackable left aligned grid">
+          <div class="row">
+            <div class="column">
+              <div class="ui red inverted segment">
 
-  <p>
-    <%= form.label :titel %><br>
-    <%= form.text_field :titel %>
-  </p>
+                <h1 class="ui white header">
 
-  <p>
-    <%= form.label :inhalt %><br>
-    <%= form.text_area :inhalt %>
-  </p>
-  
-  <p>
-    <%= form.submit "Inhalt erstellen" %>
-  </p>
+                  <i class="white bars icon" id="hamburger" ></i>
 
-<% end %>
-<%= link_to 'Zurück', wissensgebiete_fachmodul_lernmethoden_path(@wissensgebiet,@fachmodul,@lernmethode) %>
+                  <div class="content"> Neuen Inhalt erstellen </div>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <div class="ui big breadcrumb">
+                <%= link_to 'Wissensgebiete', wissensgebiete_index_path %>
+                <i class="right chevron icon divider"></i>
+                <%= link_to @wissensgebiet.titel,  wissensgebiete_path(@wissensgebiet) %>
+                <i class="right chevron icon divider"></i>
+
+                <%= link_to @fachmodul.titel,  wissensgebiete_fachmodul_path(@wissensgebiet,@fachmodul) %>
+                <i class="right chevron icon divider"></i>
+
+
+                <%= link_to @lernmethode.name, wissensgebiete_fachmodul_lernmethoden_path(@wissensgebiet,@fachmodul,@lernmethode) %>
+                <i class="right chevron icon divider"></i>
+                <div class="active section"> Inhalt erstellen</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <% if @inhalt.errors.any? %>
+          <div id="error_explanation">
+            <div class="ui error message">
+              <p>Inhalt konnte nicht erstellt werden!</p>
+              <ul>
+                <% @inhalt.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <%= form_for @inhalt, url: {action:"create"}, local: true do |form| %>
+        <div class="ui form segment">
+          <div class="field">
+            <label><%= form.label :titel %></label>
+            <%= form.text_field :titel,placeholder: "Titel" %>
+          </div>
+          <div class="field">
+            <label><%= form.label :inhalt %></label>
+            <%= form.text_area :inhalt,placeholder: "Inhalt" %>
+          </div>
+
+          <%= form.submit "Inhalt erstellen", class: "ui primary submit button"%>
+
+        </div>
+        <% end %>
+      </div>
+  </body>
+</html>

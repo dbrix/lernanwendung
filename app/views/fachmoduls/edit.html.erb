@@ -1,39 +1,113 @@
-<h1>Fachmodul bearbeiten</h1>
-<%= form_for @fachmodul, url: {action:"update"}, local: true do |form| %>
+<html>
+  <head>
+    <title> Wissensgebiet erstellen </title>
+    <style type="text/css">
+        body {
+          background-color: #DADADA;
+        }
 
-  <% if @fachmodul.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@fachmodul.errors.count, "error") %> Das Fachmodul konnte nicht
-        bearbeitet werden!
-      </h2>
-      <ul>
-        <% @fachmodul.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    </style>
+      <script src="/assets/jquery.js" type="text/javascript"></script>
+      <script src="/assets/jquery_ujs.js" type="text/javascript"></script>
+      <script src="/assets/semantic.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+
+        $(document).ready(function(){
+          $('#hamburger').on("click",function(){
+            $('.ui.sidebar')
+            .sidebar('toggle')
+            ;
+          });
+        })
+
+
+
+      </script>
+  </head>
+  <body>
+
+    <div class="ui black vertical inverted left visible sidebar menu">
+      <%=link_to '/wissensgebiete' do%>
+      <div class="item">
+        Startseite
+        <i class="ui white home icon"></i>
+
+      </div>
+      <%end%>
+      <div class="item">
+        Tutor*in werden
+        <i class="ui white graduation cap icon"></i>
+
+      </div>
+      <div class="item">
+        Logout
+        <i class="ui white sign-out icon"></i>
+
+      </div>
     </div>
-  <% end %>
+      <div class="pusher">
+        <div class="ui stackable left aligned grid">
+          <div class="row">
+            <div class="column">
+              <div class="ui red inverted segment">
 
-  <p>
-    <%= form.label :titel %><br>
-    <%= form.text_field :titel %>
-  </p>
+                <h1 class="ui white header">
 
-  <p>
-    <%= form.label :beschreibung %><br>
-    <%= form.text_area :beschreibung %>
-  </p>
+                  <i class="white bars icon" id="hamburger" ></i>
 
-  <p>
-    <%= form.label "Ansprechpartner*in für dieses Fachmodul" %>
-    <br>
-<%= form.collection_select(:benutzer_id, Benutzer.all.where(ansprechpartner: true), :id, :name, { :prompt => 'Wähle Ansprechpartner*in',:selected => @fachmodul.benutzer_id }) %>
+                  <div class="content"> Fachmodul bearbeiten </div>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <div class="ui big breadcrumb">
+                <%= link_to 'Wissensgebiete', wissensgebiete_index_path %>
+                <i class="right chevron icon divider"></i>
+                <%= link_to @wissensgebiet.titel, wissensgebiete_path(@wissensgebiet) %>
+                <i class="right chevron icon divider"></i>
+                <div class="active section">Fachmodul bearbeiten</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
 
-  </p>
-  <p>
-    <%= form.submit "Fachmodul bearbeiten" %>
-  </p>
+        <% if @fachmodul.errors.any? %>
+          <div id="error_explanation">
+            <div class="ui error message">
+              <p>Fachmodul konnte nicht bearbeitet werden!</p>
+              <ul>
+                <% @fachmodul.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
 
-<% end %>
-<%= link_to 'Zurück', wissensgebiete_path(@wissensgebiet) %>
+        <%= form_for @fachmodul, url: {action:"update"}, local: true do |form| %>
+        <div class="ui form segment">
+          <div class="field">
+            <label><%= form.label :titel %></label>
+            <%= form.text_field :titel,placeholder: "Titel" %>
+          </div>
+          <div class="field">
+            <label><%= form.label :beschreibung %></label>
+            <%= form.text_area :beschreibung,placeholder: "Beschreibung" %>
+          </div>
+          <div class="field">
+            <label><%= form.label "Ansprechpartner*in"%></label>
+            <%= form.collection_select(:benutzer_id, Benutzer.all.where(ansprechpartner: true),
+             :id, :name, { :prompt => 'Wähle Ansprechpartner*in',:selected => @fachmodul.benutzer_id },{class:"ui selection dropdown"})%>
+
+          </div>
+          <%= form.submit "Fachmodul bearbeiten", class: "ui primary submit button"%>
+
+        </div>
+        <% end %>
+      </div>
+  </body>
+</html>

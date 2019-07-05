@@ -6,7 +6,7 @@ class WissensgebieteController < ApplicationController
 
   def show
     @wissensgebiet=Wissensgebiet.find(params[:id])
-    @fachmoduls =@wissensgebiet.fachmoduls.all
+    @fachmoduls =@wissensgebiet.fachmoduls.all.order('LOWER(titel)')
   end
 
   def new
