@@ -12,17 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2019_06_24_215015) do
 
-  create_table "benutzers", force: :cascade do |t|
-    t.string "mail"
-    t.string "name"
-    t.string "passwort"
-    t.boolean "tutor"
-    t.boolean "qualTut"
-    t.boolean "ansprechpartner"
-    t.boolean "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "benutzers" because of following StandardError
+#   Unknown type 'string' for column 'password_digest'
 
   create_table "fachmoduls", force: :cascade do |t|
     t.string "titel"

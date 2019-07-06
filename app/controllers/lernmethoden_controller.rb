@@ -3,6 +3,6 @@ class LernmethodenController < ApplicationController
     @wissensgebiet=Wissensgebiet.find(params[:wissensgebiete_id])
     @fachmodul =@wissensgebiet.fachmoduls.find(params[:fachmodul_id])
     @lernmethode =@fachmodul.lernmethoden.find(params[:id])
-    @inhalts=@lernmethode.inhalts.all
+    @inhalts=@lernmethode.inhalts.all.order('LOWER(titel)')
   end
 end

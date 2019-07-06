@@ -46,26 +46,60 @@
         </div>
       </div>
 
+      <%  if current_user.admin==true || current_user.ansprechpartner==true || current_user.qualTut==true %>
 
-      <%=link_to new_wissensgebiete_fachmodul_path(@wissensgebiet)  do%>
-        <div class="item">
-          Neues Fachmodul erstellen
-          <i class="ui white plus icon"></i>
-        </div>
+        <%=link_to new_wissensgebiete_fachmodul_path(@wissensgebiet)  do%>
+          <div class="item">
+            Neues Fachmodul erstellen
+            <i class="ui white plus icon"></i>
+          </div>
+        <%end%>
       <%end%>
+      <% if current_user.admin==false && current_user.ansprechpartner==false && current_user.qualTut==false && current_user.tutor==false %>
 
-      <div class="item">
-        Tutor*in werden
-        <i class="ui white graduation cap icon"></i>
-      </div>
-      <%=link_to '/' do%>
+        <%=link_to 'rechte/tutorin' do%>
+          <div class="item">
+            Tutor*in werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if current_user.admin==false && current_user.ansprechpartner==false && current_user.qualTut==false && current_user.tutor==true %>
+        <%=link_to 'rechte/qualifizierte_tutorin' do%>
+          <div class="item">
+            qualifizierte Tutor*in werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if current_user.admin==false && (current_user.ansprechpartner==true || current_user.qualTut==true) %>
+        <%=link_to 'rechte/admin' do%>
+          <div class="item">
+            Admin werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if current_user %>
 
         <div class="item">
-          Logout
-          <i class="ui white sign-out icon"></i>
-
+          Eingeloggt als  <%= current_user.mail %>
         </div>
-      <%end%>
+        <% else %>
+        <%= authorize %>
+        <% end %>
+
+        <%=link_to '/logout' do%>
+
+          <div class="item">
+            Logout
+            <i class="ui white sign-out icon"></i>
+
+          </div>
+        <%end%>
 
     </div>
     <div class="pusher">
@@ -118,18 +152,24 @@
                 <div class="ui content">
                   <p> <%= fachmodul.beschreibung %></p>
                 </div>
+                <%  if current_user.admin==true || current_user.ansprechpartner==true || current_user.qualTut==true %>
+
                 <p>
                   <div class="ui button">
                     <%= link_to 'Fachmodul bearbeiten',  edit_wissensgebiete_fachmodul_path(@wissensgebiet,fachmodul) %>
                     <i class="red edit icon"></i>
                   </div>
                 </p>
+                <%end%>
+                <%  if current_user.admin==true %>
+
                 <div class="ui button">
                   <%= link_to 'Fachmodul löschen', wissensgebiete_fachmodul_path(@wissensgebiet,fachmodul),
                           method: :delete,
                           data: { confirm: 'Sind Sie sicher, dass Sie dieses Fachmodul löschen möchten?' } %>
                   <i class=" red trash icon"></i>
                 </div>
+                <%end%>
 
               </div>
             </p>

@@ -1,0 +1,6 @@
+<% if current_user.admin==true || current_user.ansprechpartner==false && current_user.qualTut==false && current_user.tutor==true %>
+
+<h1>qualifizierte Tutor*in werden</h1>
+<%else %>
+<%= forbidden%>
+<%end%>

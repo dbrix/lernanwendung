@@ -38,12 +38,43 @@
       </div>
       <%end%>
 
-      <div class="item">
-        Tutor*in werden
-        <i class="ui white graduation cap icon"></i>
+      <% if current_user.admin==false && current_user.ansprechpartner==false && current_user.qualTut==false && current_user.tutor==false %>
 
+        <%=link_to 'rechte/tutorin' do%>
+          <div class="item">
+            Tutor*in werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if current_user.admin==false && current_user.ansprechpartner==false && current_user.qualTut==false && current_user.tutor==true %>
+        <%=link_to 'rechte/qualifizierte_tutorin' do%>
+          <div class="item">
+            qualifizierte Tutor*in werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if current_user.admin==false && (current_user.ansprechpartner==true || current_user.qualTut==true) %>
+        <%=link_to 'rechte/admin' do%>
+          <div class="item">
+            Admin werden
+            <i class="ui white graduation cap icon"></i>
+          </div>
+        <% end %>
+      <% end %>
+      
+      <% if current_user %>
+      <div class="item">
+        Eingeloggt als  <%= current_user.mail %>
       </div>
-      <%=link_to '/' do%>
+      <% else %>
+      <%= authorize %>
+      <% end %>
+
+      <%=link_to '/logout' do%>
 
         <div class="item">
           Logout

@@ -1,4 +1,4 @@
-<html><%= link_to 'Login', controller: 'wissensgebiete' %>
+<html>
   <head>
     <title> Login</title>
     <style type="text/css">
@@ -18,6 +18,8 @@
   </head>
   <body>
 
+
+
     <div class="ui middle aligned center aligned grid">
       <div class="column">
         <div class="ui stacked segment">
@@ -27,24 +29,25 @@
               Hochschule Coburg Lernanwendung
             </div>
           </h2>
-          <form class="ui large form">
+          <%= form_tag sessions_path do %>
+            <div class="ui form segment">
               <div class="field">
                 <div class="ui left icon input">
                   <i class="user icon"></i>
-                  <input type="text" name="email" placeholder="E-Mail-Adresse">
+                <%= text_field_tag :mail, params[:mail],placeholder:"E-Mail-Adresse" %>
                 </div>
               </div>
               <div class="field">
                 <div class="ui left icon input">
                   <i class="lock icon"></i>
-                  <input type="password" name="password" placeholder="Passwort">
-                </div>
+                <%= password_field_tag :passwort %>
               </div>
-
-              <div class="ui fluid large red submit button">Login</div>
-              <div class="ui error message"></div>
+              </div>
+              <div class="actions"><%= submit_tag "Logín",class: "ui fluid large red submit button" %></div>
             </div>
-        </form>
+          <% end %>
+
+            </div>
         <div class="ui message">
           <a href="#">Passwort vergessen?</a>
         </div>
