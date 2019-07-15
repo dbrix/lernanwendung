@@ -149,7 +149,9 @@
                 <h3 class="ui red header">
                   <div class="ui content">   <%= link_to inhalt.titel, wissensgebiete_fachmodul_lernmethoden_inhalt_path(@wissensgebiet,@fachmodul,@lernmethode,inhalt) %></div>
                 </h3>
-
+                <div class="ui content">
+                    Erstellt von: <%=Benutzer.find(inhalt.benutzer_id).name%>
+                </div>
                 <div class="ui content">
                   gemeldet: <%=inhalt.gemeldet%>
                 </div>

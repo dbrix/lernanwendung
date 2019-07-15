@@ -92,7 +92,7 @@
 
               <i class="white bars icon" id="hamburger" ></i>
 
-              <div class="content"> Ansprechpartner*in </div>
+              <div class="content"> Benutzer*in ansehen</div>
             </h1>
           </div>
         </div>
@@ -110,17 +110,58 @@
               <div class="content">
                 <a class="header"><%=@benutzer.name%></a>
                 <div class="meta">
-                  <span class="cinema">admin</span> <!-- hart codierte rolle-->
+                  <span class="cinema">
+                    <% if @benutzer.admin==true %>
+                    Admin
+                    <% end %>
+
+                    <% if @benutzer.ansprechpartner==true %>
+                    Ansprechpartner*in
+                    <% end %>
+
+                     <%if @benutzer.qualTut==true %>
+                    qualifizierte*r Tutor*in
+                    <% end %>
+
+                    <% if @benutzer.tutor==true %>
+                    Tutor*in
+                    <% end %>
+
+                    <% if @benutzer.admin == false &&@benutzer.ansprechpartner==false && @benutzer.qualTut==false&& @benutzer.tutor==false  %>
+                    Student*in
+                    <% end %>
+                  </span> <!-- hart codierte rolle-->
                 </div>
                 <div class="description">
                   <p>E-Mail-Adresse: <%=@benutzer.mail%></p>
+                  <p>Anzahl erstellter Inhalte: <%=@benutzer.anzahl_inhalte%></p>
+                  <p>Aktiv: <%=@benutzer.aktiv%></p>
+
+
                 </div>
+
                 <div class="extra">
                   <div class="ui right floated primary button">
                     Ansprechpartner*in kontaktieren
                     <i class="right chevron icon"></i>
                   </div>
                 </div>
+                <br>
+                <div class="ui divider"></div>
+                <br>
+                <h2 class="ui black header">
+                  <div class="content"> Erstellte Inhalte</div>
+                </h2>
+                <div class="ui bulleted list">
+
+
+                <% @inhalts.each do |inhalt| %>
+                <div class="item">          <%= link_to inhalt.titel,  wissensgebiete_fachmodul_lernmethoden_inhalt_path(Wissensgebiet.find(Fachmodul.find(Lernmethoden.find(inhalt.lernmethoden.id).fachmodul_id).wissensgebiet_id),
+                  Fachmodul.find(Lernmethoden.find(inhalt.lernmethoden_id).fachmodul_id),Lernmethoden.find(inhalt.lernmethoden_id),inhalt)%>      </div>
+<!-- -->
+                <%end%>
+              </div>
+
               </div>
             </div>
           </div>

@@ -1,6 +1,10 @@
+<% if current_user%>
+<% if current_user.admin==true %>
+
+
 <html>
   <head>
-    <title> Wissensgebietübersicht </title>
+    <title> Benutzer*innenübersicht </title>
     <style type="text/css">
         body {
           background-color: #DADADA;
@@ -39,9 +43,9 @@
       </div>
       <%  if current_user.admin==true || current_user.ansprechpartner==true || current_user.qualTut==true %>
 
-        <%=link_to 'wissensgebiete/new' do%>
+        <%=link_to 'benutzer/new' do%>
           <div class="item">
-            Neues Wissensgebiet erstellen
+            Neue*n Benutzer*in erstellen
             <i class="ui white plus icon"></i>
 
           </div>
@@ -79,12 +83,6 @@
       <!-- TODO sidebar consistent in all views-->
       <% if current_user.admin==true %>
 
-      <%=link_to 'benutzer' do%>
-        <div class="item">
-          Benutzerübersicht ansehen
-          <i class="ui white users icon"></i>
-        </div>
-      <% end %>
 
         <%=link_to 'rechte/tutorin' do%>
           <div class="item">
@@ -140,64 +138,66 @@
 
               <i class="white bars icon" id="hamburger" ></i>
 
-              <div class="content"> Wissensgebietsübersicht </div>
+              <div class="content"> Benutzer*innenübersicht </div>
             </h1>
           </div>
         </div>
           </div>
         <div class="row">
-          <% @wissensgebiete.each do |wissensgebiet| %>
-          <!--<h3 class="ui red header">
-            <div class="ui content">   <%= wissensgebiet.titel[0] %></div>
-          </h3>-->
-            <div class="four wide column">
-              <p>
+          <table class="ui celled table">
+            <thead>
+              <tr><th>Name</th>
+                <th>E-Mail-Adresse</th>
+                <th>Aktiv</th>
+                <th>Benutzer*in bearbeiten</th>
+                <th>Benutzer*in deaktiveren</th>
+              </tr>
+            </thead>
+            <tbody>
 
-                <div class="ui padded red segment">
+          <% @benutzers.each do |benutzer| %>
 
-                <h3 class="ui red header">
-                  <div class="ui content">   <%= link_to wissensgebiet.titel, wissensgebiete_path(wissensgebiet) %></div>
-                </h3>
-
-                <div class="ui content">
-                  <p> <%= wissensgebiet.beschreibung %></p>
-                </div>
-
-                <%  if current_user.admin==true || current_user.ansprechpartner==true || current_user.qualTut==true %>
-                <p>
-                  <div class="ui button">
-                    <%= link_to 'Wissensgebiet bearbeiten', edit_wissensgebiete_path(wissensgebiet) %>
-                    <i class="red edit icon"></i>
-                  </div>
-                </p>
-                <%end%>
-                <%  if current_user.admin==true %>
-
+            <tr>
+              <td data-label="Name"><%= link_to benutzer.name, benutzer_path(benutzer) %></td>
+              <td data-label="E-Mail-Adresse"><%=benutzer.mail%></td>
+              <td data-label="Aktiv"><%=benutzer.aktiv%></td>
+              <td>
                 <div class="ui button">
-                  <%= link_to 'Wissensgebiet löschen', wissensgebiete_path(wissensgebiet),
+                  <%= link_to 'Benutzer*in bearbeiten', edit_benutzer_path(benutzer) %>
+                  <i class="red edit icon"></i>
+                </div>
+              </td>
+              <td>
+                <div class="ui button">
+                  <%= link_to 'Benutzer*in deaktivieren', benutzer_path(benutzer),
                           method: :delete,
-                          data: { confirm: 'Sind Sie sicher, dass Sie dieses Wissensgebiet löschen möchten?' } %>
+                          data: { confirm: 'Sind Sie sicher, dass Sie diese*n Benutzer*in deaktivieren möchten?' } %>
                   <i class=" red trash icon"></i>
                 </div>
-                <%end%>
 
-              </div>
-            </p>
+              </td>
+            </tr>
 
-            </div>
-          <%end%>
-          </div>
+        <%end%>
+          </tbody>
+        </table>
 
-        </div>
       </div>
 
+    </div>
+  </div>
 
 
-      <div class="ui right floated button">
-      </div>
 
-      <div class="ui left floated button">
-      </div>
+
     </div>
   </body>
 </html>
+
+<%else %>
+<%= forbidden%>
+<% end%>
+
+<%else%>
+<%= authorize%>
+<%end%>

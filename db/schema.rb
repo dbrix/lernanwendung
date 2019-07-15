@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_215015) do
+ActiveRecord::Schema.define(version: 2019_07_11_104631) do
 
 # Could not dump table "benutzers" because of following StandardError
 #   Unknown type 'string' for column 'password_digest'
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 2019_06_24_215015) do
     t.text "inhalt"
     t.boolean "gemeldet"
     t.integer "lernmethoden_id"
+    t.integer "benutzer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["benutzer_id"], name: "index_inhalts_on_benutzer_id"
     t.index ["lernmethoden_id"], name: "index_inhalts_on_lernmethoden_id"
   end
 

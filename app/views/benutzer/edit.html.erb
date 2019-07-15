@@ -131,7 +131,7 @@
 
               <i class="white bars icon" id="hamburger" ></i>
 
-              <div class="content"> Benutzer*in erstellen </div>
+              <div class="content"> Benutzer*in bearbeiten </div>
             </h1>
           </div>
         </div>
@@ -142,7 +142,7 @@
                 <%= link_to 'Benutzer*innenübersicht', benutzer_index_path %>
                 <i class="right chevron icon divider"></i>
 
-                <div class="active section"> Benutzer*in erstellen</div>
+                <div class="active section"> Benutzer*in bearbeiten</div>
 
               </div>
             </div>
@@ -152,7 +152,7 @@
           <% if @benutzer.errors.any? %>
               <div class="error_messages">
                 <div class="ui error message">
-                  <p>Benutzer*in konnte nicht erstellt werden!</p>
+                  <p>Benutzer*in konnte nicht bearbeitet werden!</p>
                   <ul>
                     <% @benutzer.errors.full_messages.each do |message| %>
                       <li><%= message %></li>
@@ -163,9 +163,8 @@
             <% end %>
 
 
-            <%= form_for @benutzer, url: {controller:"benutzer",action:"create"}, local: true do |form| %>
+            <%= form_for @benutzer, url: {controller:"benutzer",action:"update"}, local: true do |form| %>
             <div class="ui form segment">
-
               <div class="field">
                 <label><%= form.label :name %></label>
                 <%= form.text_field :name,placeholder: "Name" %>
@@ -216,7 +215,7 @@
                     </div>
                   </div>
                 </div>
-              <%= form.submit "Benutzer*in erstellen", class: "ui primary submit button"%>
+              <%= form.submit "Benutzer*in bearbeiten", class: "ui primary submit button"%>
 
             </div>
             <% end %>

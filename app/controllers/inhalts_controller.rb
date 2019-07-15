@@ -11,6 +11,7 @@ class InhaltsController < ApplicationController
     @fachmodul =@wissensgebiet.fachmoduls.find(params[:fachmodul_id])
     @lernmethode =@fachmodul.lernmethoden.find(params[:lernmethoden_id])
     @inhalt=@lernmethode.inhalts.find(params[:id])
+    @benutzer=Benutzer.find(@inhalt.benutzer_id)
   end
 
   def edit
@@ -27,7 +28,13 @@ class InhaltsController < ApplicationController
     @inhalt=@lernmethode.inhalts.new(inhalt_params)
     #initalize "gemeldet=false"?
     @inhalt.gemeldet=false
-      if @inhalt.save
+    @inhalt.benutzer_id=current_user.id
+
+
+
+    if @inhalt.save
+      current_user.anzahl_inhalte+=1
+      current_user.save
         flash[:success] = "Inhalt erfolgreich erstellt"
         redirect_to wissensgebiete_fachmodul_lernmethoden_path(@wissensgebiet,@fachmodul,@lernmethode)
       else
